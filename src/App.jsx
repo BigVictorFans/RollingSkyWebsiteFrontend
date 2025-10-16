@@ -14,7 +14,6 @@ import EditLevel from './pages/levels/editlevels'
 import Login from './pages/users/login'
 import Signup from './pages/users/signup'
 import ManageUsers from './pages/users/manageusers'
-import EditUserPage from './pages/users/editusers'
 import ManageLevelsPage from './pages/levels/managelevels'
 import GameReviewsPage from './gamereviews/gamereview'
 import AddGameReviewPage from './gamereviews/addgamereview'
@@ -23,7 +22,11 @@ import AdminDashboard from './admin'
 import CategoriesPage from './pages/posts/managepostcategories'
 import UpdateLogPage from './pages/updatelogs/updatelogs'
 import AddUpdateLog from './pages/updatelogs/addupdatelog'
+import ChangeUserName from './pages/users/changename'
+import EditUserPage from './pages/users/edituser'
 import { useCookies } from 'react-cookie'
+import UserDashboard from './userdashboard'
+import ManagePosts from './pages/posts/manageposts'
 import { CookiesProvider } from 'react-cookie'
 import { Toaster } from 'sonner'
 import AdminRoute from './adminroute'
@@ -52,6 +55,9 @@ function App() {
               <Route path='/admin' element={<AdminRoute><AdminDashboard /></AdminRoute>} />
               <Route path='/updatelogs' element={<UpdateLogPage />} />
               <Route path='/updatelogs/add' element={<AdminRoute><AddUpdateLog /></AdminRoute>} />
+              <Route path='/manageposts' element={<ManagePosts />} />
+              <Route path='/userdashboard' element={<UserDashboard />} />
+              <Route path='/changeusername' element={<ChangeUserName />} />
             </Routes>
           <Toaster/>
         </BrowserRouter>

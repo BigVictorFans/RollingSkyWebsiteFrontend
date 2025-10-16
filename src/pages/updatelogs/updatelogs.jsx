@@ -30,7 +30,10 @@ const UpdateLogPage = () => {
     const { currentupdatelog = {} } = cookies; // assign empty object to avoid error if updatelog not logged in
     const { token = "" } = currentupdatelog;
     // to store the data from /levels
-    const [updates, setUpdates] = useState([]);
+    const [updates, setUpdates] = useState([]);   
+        const currentUser = cookies.currentuser;
+        const isLoggedIn = !!currentUser;
+        const isAdmin = currentUser?.role === "admin";
 
   
     useEffect(() => {
@@ -104,21 +107,29 @@ const UpdateLogPage = () => {
                   >
                     Update Log
                 </Typography>
-                <Button
-                variant="contained"
-                startIcon={<AddIcon />}
-                sx={{
-                    backgroundColor: "white",
-                    color: "#2596BE",
-                    fontWeight: "bold",
-                    "&:hover": {
-                    backgroundColor: "#e3f2fd",
-                    },
-                }}
-                onClick={() => navigate("/updatelogs/add")}
-                >
-                Add Update
-                </Button>
+                {isAdmin === true ? 
+                    (
+                      <Button
+                          variant="contained"
+                          startIcon={<AddIcon />}
+                          sx={{
+                              backgroundColor: "white",
+                              color: "#2596BE",
+                              fontWeight: "bold",
+                              "&:hover": {
+                              backgroundColor: "#e3f2fd",
+                              },
+                          }}
+                          onClick={() => navigate("/updatelogs/add")}
+                          >
+                          Add Update
+                      </Button>
+                    )
+                  : 
+                    (
+                      <h1></h1>
+                    )
+                  }
       </Stack>
         <Box sx={{ display: "flex", flexDirection: "column", gap: 3 }}>
           {updates.map((update) => (
@@ -144,7 +155,9 @@ const UpdateLogPage = () => {
                   })}
                 </Typography>
                 <Box sx={{display:"flex", justifyContent:"end"}} >
-                  <Button
+                  {isAdmin === true ? 
+                    (
+                      <Button
                       variant="contained"
                       color="error"
                       size="small"
@@ -153,6 +166,12 @@ const UpdateLogPage = () => {
                   >
                       Delete
                   </Button>
+                    )
+                  : 
+                    (
+                      <h1></h1>
+                    )
+                  }
                 </Box>
                 <Typography
                   variant="h6"

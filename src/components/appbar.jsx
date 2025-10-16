@@ -58,12 +58,6 @@ export default function Navbar() {
 
         {/* Right side (desktop) */}
         <Box sx={{ display: { xs: "none", md: "flex" }, gap: 3 }}>
-          {/* ✅ Only admins see this */}
-          {isAdmin && (
-            <Button sx={{ color: "black", fontWeight: 700 }} onClick={() => navigate("/admin")}>
-              Admin Dashboard
-            </Button>
-          )}
           <Button sx={{ color: "black", fontWeight: 700 }} onClick={() => navigate("/updatelogs")}>
             Updatelogs
           </Button>
@@ -76,6 +70,12 @@ export default function Navbar() {
           <Button sx={{ color: "black", fontWeight: 700 }} onClick={() => navigate("/posts")}>
             POSTS
           </Button>
+          {/* ✅ Only admins see this */}
+          {isAdmin && (
+            <Button sx={{ color: "black", fontWeight: 700 }} onClick={() => navigate("/admin")}>
+              Admin Dashboard
+            </Button>
+          )}
 
           {/* ✅ Only show signup/login if NOT logged in */}
           {!isLoggedIn && (
@@ -90,6 +90,11 @@ export default function Navbar() {
           )}
 
           {/* ✅ Only show logout if logged in */}
+          {isLoggedIn && (
+            <Button sx={{ color: "black", fontWeight: 700 }} onClick={() => navigate("/userdashboard")}>
+                User Dashboard
+             </Button>
+          )}
           {isLoggedIn && (
             <Button
               sx={{ color: "black", fontWeight: 700 }}
